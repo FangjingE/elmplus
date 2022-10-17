@@ -8,5 +8,5 @@ elm.sql文件是项目所用的数据库
 
 其它文件：
 
-elm项目报告、Servlet和Springboot项目任务书及课件、**安装环境部署手册**
+elm项目报告、Servlet和Springboot项目任务书及课件、**安装环境部署手册**、实践大作业任务书
 
