@@ -15,7 +15,7 @@ import {
 } from './common.js'
 Vue.config.productionTip = false
 //设置axios的基础url部分
-axios.defaults.baseURL = 'http://172.23.33.117:8080/elm/';
+axios.defaults.baseURL = 'http://localhost:8080/elm/';
 //将axios挂载到vue实例上，使用时就可以 this.$axios 这样使用了
 Vue.prototype.$axios = axios;
 Vue.prototype.$qs = qs;
