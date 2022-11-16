@@ -3,8 +3,8 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.neusoft.elmboot.mapper.OrdersMapper">
 
-    <resultMap id="ordersResultMap" type="Orders">
-        <id column="orderId" property="orderId"/>
+    <resultMap userid="ordersResultMap" type="Orders">
+        <userid column="orderId" property="orderId"/>
         <result column="userId" property="userId"/>
         <result column="businessId" property="businessId"/>
         <result column="orderDate" property="orderDate"/>
@@ -18,14 +18,14 @@
         <collection property="list" ofType="com.neusoft.elmboot.po.OrderDetailet"
                     select="com.neusoft.elmboot.mapper.OrderDetailetMapper.listOrderDetailetByOrderId" column="orderId"></collection>
     </resultMap>
-    <select id="getOrdersById" parameterType="com.neusoft.elmboot.po.Orders" resultMap="ordersResultMap">
+    <select userid="getOrdersById" parameterType="com.neusoft.elmboot.po.Orders" resultMap="ordersResultMap">
         select * from orders
         <where>
             orderId=#{orderId}
         </where>
     </select>
 
-    <select id="listOrdersByUserId" parameterType="com.neusoft.elmboot.po.Orders" resultMap="ordersResultMap">
+    <select userid="listOrdersByUserId" parameterType="com.neusoft.elmboot.po.Orders" resultMap="ordersResultMap">
         select * from orders
         <where>
             userId=#{userId}
