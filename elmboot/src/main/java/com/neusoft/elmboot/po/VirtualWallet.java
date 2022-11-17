@@ -3,30 +3,35 @@ package com.neusoft.elmboot.po;
 import java.math.BigDecimal;
 
 public class VirtualWallet {
-  private long id;
-  private long createTime = System.currentTimeMillis();
+  private String userid;
+//  private long createTime = System.currentTimeMillis();
   private BigDecimal balance = BigDecimal.ZERO;
 
-public long getId() {
-    return id;
+public String getId() {
+    return userid;
 }
-public void setId(long id) {
-    this.id = id;
+public void setId(String userid) {
+    this.userid = userid;
 }
-public long getCreateTime() {
-    return createTime;
-}
-public void setCreateTime(long createTime) {
-    this.createTime = createTime;
-}
+//public long getCreateTime() {
+//    return createTime;
+//}
+//public void setCreateTime(long createTime) {
+//    this.createTime = createTime;
+//}
 public BigDecimal getBalance() {
     return balance;
 }
 public void setBalance(BigDecimal balance) {
     this.balance = balance;
 }
-  
-  
+
+    public void debit(BigDecimal amount) throws Exception {
+        if (this.balance.compareTo(amount) < 0) {
+            throw new Exception("余额不足");
+        }
+        this.balance = this.balance.subtract(amount);
+    }
   
 
 }
