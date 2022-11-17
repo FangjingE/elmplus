@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Service
 public class VirtualWalletService {
@@ -69,6 +70,9 @@ public class VirtualWalletService {
       debit(fromWalletId, amount);
       credit(toWalletId, amount);
    }
-   
+
+   public List<VirtualWalletTransaction> listtransactionbyid (String userId){
+  return  transactionRepo.listtransactionbyid(userId);
+   }
 
 }

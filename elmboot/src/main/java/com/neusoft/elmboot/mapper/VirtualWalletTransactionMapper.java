@@ -16,7 +16,7 @@ public interface VirtualWalletTransactionMapper {
     @Options(useGeneratedKeys = true,keyProperty = "id",keyColumn = "id")
     public void saveTransaction(VirtualWalletTransaction Transaction);
 
-    @Select("select * from transaction;")
+    @Select("select * from transaction where FromWalletId = #{userid};")
     public List<VirtualWalletTransaction> listtransactionbyid(String userid);
 
 

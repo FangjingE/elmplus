@@ -2,8 +2,10 @@ package com.neusoft.elmboot.controller;
 
 import com.neusoft.elmboot.po.Business;
 import com.neusoft.elmboot.po.VirtualWallet;
+import com.neusoft.elmboot.po.VirtualWalletTransaction;
 import com.neusoft.elmboot.service.VirtualWalletService;
 import java.math.BigDecimal;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,12 +36,12 @@ public class VirtualWalletController {
         virtualWalletService.credit(userId,amount);
     } // 充值、入账
     @RequestMapping("/transfer")
-    public void transfer(String fromWalletId, String toWalletId, BigDecimal amount) throws Exception {
-        virtualWalletService.transfer(fromWalletId,toWalletId,amount);
+    public void transfer(String fromUserId, String toUserId, BigDecimal amount) throws Exception {
+        virtualWalletService.transfer(fromUserId,toUserId,amount);
     } // 转账
-
-    public void listtransactionbyid(long userid){
-
+    @RequestMapping("/listtransactionbyid")
+    public List<VirtualWalletTransaction> listtransactionbyid(String userid){
+        return virtualWalletService.listtransactionbyid(userid);
     }//查询流水
 
 }
