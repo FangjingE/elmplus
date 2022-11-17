@@ -32,6 +32,13 @@ public void setBalance(BigDecimal balance) {
         }
         this.balance = this.balance.subtract(amount);
     }
-  
+
+    public void credit(BigDecimal amount) throws Exception {
+        if (amount.compareTo(BigDecimal.ZERO) < 0) {
+            throw new Exception("存款值不合规");
+        }
+        this.balance = this.balance.add(amount);
+    }
+
 
 }

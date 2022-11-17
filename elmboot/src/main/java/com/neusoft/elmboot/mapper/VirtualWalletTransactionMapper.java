@@ -19,4 +19,5 @@ public interface VirtualWalletTransactionMapper {
     @Select("select * from transaction;")
     public List<VirtualWalletTransaction> listtransactionbyid(String userid);
 
+
 }

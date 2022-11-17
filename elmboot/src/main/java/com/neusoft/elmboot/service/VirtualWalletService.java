@@ -44,9 +44,31 @@ public class VirtualWalletService {
    }
 
    public void transfer (long fromWalletId,long towalletId, BigDecimal amount){};
-   public void credit (long walletId, BigDecimal amount){};
+   @Transactional
+   public void credit(String userId, BigDecimal amount) throws Exception {
+      VirtualWallet wallet = walletRepo.getWalletbyuserId(userId);
+      wallet.credit(amount);
+      VirtualWalletTransaction transactionEntity = new VirtualWalletTransaction();
+      transactionEntity.setAmount(amount);
+      transactionEntity.setCreateTime(System.currentTimeMillis());
+      transactionEntity.setType("CREDIT");
+      transactionEntity.setFromWalletId(userId);
+      transactionRepo.saveTransaction(transactionEntity);
+      walletRepo.updateBalance(userId, wallet.getBalance());
+   }
 
-
+   @Transactional
+   public void transfer(String fromWalletId, String toWalletId, BigDecimal amount) throws Exception {
+      VirtualWalletTransaction transactionEntity = new VirtualWalletTransaction();
+      transactionEntity.setAmount(amount);
+      transactionEntity.setCreateTime(System.currentTimeMillis());
+      transactionEntity.setType("TRANSFER");
+      transactionEntity.setFromWalletId(fromWalletId);
+      transactionEntity.setToWalletId(toWalletId);
+      transactionRepo.saveTransaction(transactionEntity);
+      debit(fromWalletId, amount);
+      credit(toWalletId, amount);
+   }
    
 
 }

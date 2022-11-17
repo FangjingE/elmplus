@@ -28,11 +28,15 @@ public class VirtualWalletController {
     @RequestMapping("/debit")
     public void debit(String userId, BigDecimal amount) throws Exception {
         virtualWalletService.debit(userId,amount);
-    } // 出账
-
-    public void credit(Long walletId, BigDecimal amount) {  } // 入账
-
-    public void transfer(Long fromWalletId, Long toWalletId, BigDecimal amount) { } // 转账
+    } // 提现、出账
+    @RequestMapping("/credit")
+    public void credit(String userId, BigDecimal amount) throws Exception {
+        virtualWalletService.credit(userId,amount);
+    } // 充值、入账
+    @RequestMapping("/transfer")
+    public void transfer(String fromWalletId, String toWalletId, BigDecimal amount) throws Exception {
+        virtualWalletService.transfer(fromWalletId,toWalletId,amount);
+    } // 转账
 
     public void listtransactionbyid(long userid){
 
