@@ -35,7 +35,7 @@
 			</li>
 		</ul>
 		<div class="payment-button">
-			<button>确认支付</button>
+			<button @click="transfer">确认支付</button>
 		</div>
 		<!-- 底部菜单部分 -->
 		<Footer></Footer>
@@ -55,6 +55,7 @@
 			}
 		},
 		created() {
+			this.user = this.$getSessionStorage('user');
 			this.$axios.post('OrdersController/getOrdersById', this.$qs.stringify({
 				orderId: this.orderId
 			})).then(response => {
@@ -78,6 +79,20 @@
 			window.onpopstate = null;
 		},
 		methods: {
+			transfer(){
+				console.log(this.user);
+			this.$axios.post('VirtualWalletController/debit', this.$qs.stringify({
+				
+				userId: this.user.userId,
+				amount: this.orders.orderTotal,
+				
+			}))
+			this.$axios.post('VirtualWalletController/credit', this.$qs.stringify({
+				userId: this.orders.businessId,
+				amount: this.orders.orderTotal,
+			}))
+				
+			},
 			detailetShow() {
 				this.isShowDetailet = !this.isShowDetailet;
 			}

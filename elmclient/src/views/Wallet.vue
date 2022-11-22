@@ -4,7 +4,7 @@
         <div class="card">
             <div class="card-body">
                 <div class="row">
-                    <div class="col-6">余额：{{balance}}</div>
+                    <div class="col-6">余额：{{VirtualWallet.balance}}</div>
                 </div>
             </div>
         </div>
@@ -18,7 +18,7 @@ export default {
 	data() {
 			return {
 	// 			userId: this.$route.query.userId,
-	 			balance: {}
+	 			VirtualWallet: {}
 			}
 	 	},
      created() {
@@ -27,7 +27,6 @@ export default {
 		 userid: this.user.userId,
 		 })).then(response => {
 		   this.VirtualWallet = response.data;
-		   this.balance = this.VirtualWallet.balance
 		  // console.log(this.VirtualWallet);
 		   }).catch(error => {
 		        console.error(error);
