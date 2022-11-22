@@ -12,9 +12,9 @@ import OrderList from '../views/OrderList.vue'
 import AddUserAddress from '../views/AddUserAddress.vue'
 import EditUserAddress from '../views/EditUserAddress.vue'
 import Register from '../views/Register.vue'
-
-
-
+import Mine from '../views/Mine.vue'
+import Wallet from '../views/Wallet.vue'
+import Bonuspoints from'../views/Bonuspoints.vue'
 
 
 Vue.use(VueRouter)
@@ -67,8 +67,22 @@ const routes = [{
 		path: '/register',
 		name: 'Register',
 		component: Register
+	},
+	{
+		path: '/mine',
+		name: 'Mine',
+		component: Mine
+	},
+	{
+		path: '/wallet',
+		name: 'Wallet',
+		component: Wallet
+	},
+	{
+		path: '/bonuspoints',
+		name: 'Bonuspoints',
+		component: Bonuspoints
 	}
-
 
 ]
 //解决重复路由报异常问题
