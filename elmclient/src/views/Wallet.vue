@@ -4,25 +4,35 @@
         <div class="card">
             <div class="card-body">
                 <div class="row">
-                    <div class="col-6">余额：0</div>
+                    <div class="col-6">余额：{{balance}}</div>
                 </div>
             </div>
         </div>
     </div>
 </template>
-
+<!-- VirtualWallet.balance -->
 <script>
 
 export default {
     name: "Wallet",
-    // data() {
-    //     return {
-    //         balance: {},
-    //     }
-    // },
-    // created() {
-    //     this.user = this.$getSessionStorage('user');
-
+	data() {
+			return {
+	// 			userId: this.$route.query.userId,
+	 			balance: {}
+			}
+	 	},
+     created() {
+         this.user = this.$getSessionStorage('user');
+		 this.$axios.post('VirtualWalletController/getWalletbyuserId', this.$qs.stringify({
+		 userid: this.user.userId,
+		 })).then(response => {
+		   this.VirtualWallet = response.data;
+		   this.balance = this.VirtualWallet.balance
+		  // console.log(this.VirtualWallet);
+		   }).catch(error => {
+		        console.error(error);
+		    });
+}
     //     this.$axios.post('VirtualWalletController/getBalance', this.$qs.stringify({
     //         userId: this.user.userId,
     //     })).then(response => {
