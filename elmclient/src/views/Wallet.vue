@@ -1,13 +1,24 @@
 <template>
     <div class="wrapper">
-        <Header name="我的钱包" />
+        <Header>
+			<p>我的钱包</p>
+		</Header>
         <div class="card">
             <div class="card-body">
                 <div class="row">
-                    <div class="col-6">余额：{{VirtualWallet.balance}}</div>
+                    <div class="col-6">余额：{{virtualWallet.balance}}</div>
                 </div>
             </div>
         </div>
+		<div class="debit-button">
+			<button @click="todebit">提现</button>
+		</div>
+		<div class="credit-button">
+			<button @click="tocredit">充值</button>
+		</div>
+		<div class="credit-button">
+			<button @click="checktranscation">查看流水</button>
+		</div>
     </div>
 </template>
 <!-- VirtualWallet.balance -->
@@ -18,7 +29,7 @@ export default {
 	data() {
 			return {
 	// 			userId: this.$route.query.userId,
-	 			VirtualWallet: {}
+	 			virtualWallet: {}
 			}
 	 	},
      created() {
@@ -26,37 +37,33 @@ export default {
 		 this.$axios.post('VirtualWalletController/getWalletbyuserId', this.$qs.stringify({
 		 userid: this.user.userId,
 		 })).then(response => {
-		   this.VirtualWallet = response.data;
+		   this.virtualWallet = response.data;
+		   // this.$setSessionStorage('virtualWallet', virtualWallet);
 		  // console.log(this.VirtualWallet);
 		   }).catch(error => {
 		        console.error(error);
 		    });
-}
-    //     this.$axios.post('VirtualWalletController/getBalance', this.$qs.stringify({
-    //         userId: this.user.userId,
-    //     })).then(response => {
-    //         this.balance = response.data;
-    //     }).catch(error => {
-    //         console.error(error);
-    //     });
-    // },
-    // methods: {
+},
+     methods:{
+		 todebit(){
+         this.$router.push({
+         	path: '/debit',
+         });
+			 
+		 },
+		 tocredit(){
+         this.$router.push({
+         	path: '/credit',
+         });
+			 
+		 },
+		 checktranscation(){
+			 this.$router.push({
+			 	path: '/transcation',
+			 });
+		 }
+	 }
 
-    // },
-    // computed: {
-    //     getCurreny() {
-    //         this.$axios.post('CurrencyController/getCurrencyByUserId', this.$qs.stringify({
-    //             userId: this.user.userId,
-    //         })).then(response => {
-    //             this.curreny = response.data;
-    //             for (let index in this.currency) {
-    //                 console.log(this.currency[index]);
-    //             }
-    //         }).catch(error => {
-    //             console.error(error);
-    //         })
-    //     }
-    // },
 
 }
 </script>

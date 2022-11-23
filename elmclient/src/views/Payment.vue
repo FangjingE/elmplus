@@ -15,7 +15,8 @@
 		</div>
 		<!-- 订单明细部分 -->
 		<ul class="order-detailet" v-show="isShowDetailet">
-			<li v-for="item in orders.list" :key="item.orderId">
+			<li v-for="item in orders.list" >
+				<!-- :key="item.orderId" -->
 				<p>{{item.food.foodName}} x {{item.quantity}}</p>
 				<p>&#165;{{item.food.foodPrice*item.quantity}}</p>
 			</li>
@@ -47,6 +48,7 @@
 		name: 'Payment',
 		data() {
 			return {
+				virtualwallet:{},
 				orderId: this.$route.query.orderId,
 				orders: {
 					business: {}
@@ -56,6 +58,15 @@
 		},
 		created() {
 			this.user = this.$getSessionStorage('user');
+			
+			this.$axios.post('VirtualWalletController/getWalletbyuserId', this.$qs.stringify({
+				userid: this.user.userId
+			})).then(response => {
+				this.virtualwallet = response.data;
+			}).catch(error => {
+				console.error(error);
+			});
+			
 			this.$axios.post('OrdersController/getOrdersById', this.$qs.stringify({
 				orderId: this.orderId
 			})).then(response => {
@@ -80,17 +91,30 @@
 		},
 		methods: {
 			transfer(){
-				console.log(this.user);
+				// console.log(this.user);
+			if(this.virtualwallet.balance<this.orders.orderTotal)
+			{
+				alert('余额不足！');
+				return;
+			}
+
 			this.$axios.post('VirtualWalletController/debit', this.$qs.stringify({
 				
 				userId: this.user.userId,
 				amount: this.orders.orderTotal,
 				
-			}))
+			})).then(
+			alert('支付成功！'),
+			this.$router.go(-1)
+			).catch(error => {
+				console.error(error)
+			});
 			this.$axios.post('VirtualWalletController/credit', this.$qs.stringify({
 				userId: this.orders.businessId,
 				amount: this.orders.orderTotal,
-			}))
+			})).catch(error => {
+				console.error(error)
+			});
 				
 			},
 			detailetShow() {

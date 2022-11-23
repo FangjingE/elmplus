@@ -15,6 +15,10 @@ import Register from '../views/Register.vue'
 import Mine from '../views/Mine.vue'
 import Wallet from '../views/Wallet.vue'
 import Bonuspoints from'../views/Bonuspoints.vue'
+import Debit from '../views/Debit.vue'
+import Credit from '../views/Credit.vue'
+import Transctaion from '../views/Transcation.vue'
+
 
 
 Vue.use(VueRouter)
@@ -82,6 +86,25 @@ const routes = [{
 		path: '/bonuspoints',
 		name: 'Bonuspoints',
 		component: Bonuspoints
+	},
+	{
+		path: '/debit',
+		name: 'Debit',
+		component: Debit
+	},
+	{
+		
+			path: '/credit',
+			name: 'Credit',
+			component: Credit
+		
+	},
+	{
+		
+			path: '/transcation',
+			name: 'Transctaion',
+			component: Transctaion
+		
 	}
 
 ]
