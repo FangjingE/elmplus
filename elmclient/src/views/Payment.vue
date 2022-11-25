@@ -12,7 +12,7 @@
 				<i class="fa fa-caret-down" @click="detailetShow"></i>
 			</p>
 			<p>&#165;{{orders.orderTotal}}</p>
-			<p>使用积分后的价格：&#165;{{orders.orderTotal*0.7}}</p>
+			<p>使用100点积分后的价格（打七折）：&#165;{{orders.orderTotal*0.7}}</p>
 		</div>
 		<!-- 订单明细部分 -->
 		<ul class="order-detailet" v-show="isShowDetailet">
@@ -136,13 +136,21 @@
 					alert('余额不足！');
 					return;
 				}
+				this.$axios.post('BonuspointsController/debit', this.$qs.stringify({
+				
+					userId: this.user.userId,
+					amount: 100,
+				
+				})).catch(error => {
+					console.error(error)
+				});
 				this.$axios.post('VirtualWalletController/debit', this.$qs.stringify({
 				
 					userId: this.user.userId,
 					amount: amout,
 				
 				})).then(
-					alert('支付成功！'),
+					alert('使用积分支付成功！'),
 					this.$router.go(-1)
 				).catch(error => {
 					console.error(error)
@@ -162,6 +170,7 @@
 			},
 
 			useBonus() {
+			
 				i = 1;
              this.transfer();
 			},
