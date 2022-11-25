@@ -7,6 +7,7 @@
 		<!-- 订单信息部分 -->
 		<h3>订单信息：</h3>
 		<div class="order-info">
+			<p>大于100元的订单可获得10积分噢！</p>
 			<p>
 				{{orders.business.businessName}}
 				<i class="fa fa-caret-down" @click="detailetShow"></i>
@@ -122,6 +123,21 @@
 					).catch(error => {
 						console.error(error)
 					});
+					
+					if(this.orders.orderTotal>100)
+					{
+						this.$axios.post('BonuspointsController/credit', this.$qs.stringify({
+						
+							userId: this.user.userId,
+							amount: 10,
+						
+						})).then(
+						alert('获得10积分！'),
+						this.$router.go(-1)
+					).catch(error => {
+						console.error(error)
+					});
+					}
 					this.$axios.post('VirtualWalletController/credit', this.$qs.stringify({
 						userId: this.orders.businessId,
 						amount: this.orders.orderTotal,

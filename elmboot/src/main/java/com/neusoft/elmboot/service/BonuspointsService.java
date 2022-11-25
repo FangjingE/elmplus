@@ -24,8 +24,8 @@ public class BonuspointsService {
         return bonuspointsEntity;
     }
     @Transactional
-    public void debit(String walletId, BigDecimal amount) throws Exception {
-        Bonuspoints bonuspoints = bonuspointsRepo.getBonuspointsbyuserId(walletId);
+    public void debit(String userId, BigDecimal amount) throws Exception {
+        Bonuspoints bonuspoints = bonuspointsRepo.getBonuspointsbyuserId(userId);
         bonuspoints.debit(amount);
 //        VirtualWalletTransaction transactionEntity = new VirtualWalletTransaction();
 //        transactionEntity.setAmount(amount);
@@ -33,6 +33,18 @@ public class BonuspointsService {
 //        transactionEntity.setType("DEBIT");
 //        transactionEntity.setFromWalletId(walletId);
 //        transactionRepo.saveTransaction(transactionEntity);
-        bonuspointsRepo.updateBalance(walletId, bonuspoints.getBalance());
+        bonuspointsRepo.updateBalance(userId, bonuspoints.getBalance());
+    }
+    @Transactional
+    public void credit(String userId, BigDecimal amount) throws Exception {
+        Bonuspoints bonuspoints = bonuspointsRepo.getBonuspointsbyuserId(userId);
+        bonuspoints.credit(amount);
+//        VirtualWalletTransaction transactionEntity = new VirtualWalletTransaction();
+//        transactionEntity.setAmount(amount);
+//        transactionEntity.setCreateTime(System.currentTimeMillis());
+//        transactionEntity.setType("CREDIT");
+//        transactionEntity.setFromWalletId(userId);
+//        transactionRepo.saveTransaction(transactionEntity);
+        bonuspointsRepo.updateBalance(userId, bonuspoints.getBalance());
     }
 }

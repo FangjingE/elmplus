@@ -33,17 +33,17 @@ public class BonuspointsController {
     public void debit(String userId, BigDecimal amount) throws Exception {
         bonuspointsService.debit(userId,amount);
     } // 提现、出账
-//    @RequestMapping("/credit")
-//    public void credit(String userId, BigDecimal amount) throws Exception {
-//        virtualWalletService.credit(userId,amount);
-//    } // 充值、入账
+    @RequestMapping("/credit")
+    public void credit(String userId, BigDecimal amount) throws Exception {
+        bonuspointsService.credit(userId,amount);
+    } // 充值、入账
 //    @RequestMapping("/transfer")
 //    public void transfer(String fromUserId, String toUserId, BigDecimal amount) throws Exception {
 //        virtualWalletService.transfer(fromUserId,toUserId,amount);
 //    } // 转账
 //    @RequestMapping("/listtransactionbyid")
 //    public List<VirtualWalletTransaction> listtransactionbyid(String userid){
-//        return virtualWalletService.listtransactionbyid(userid);
+//        return bonuspointsService.listtransactionbyid(userid);
 //    }//查询流水
 
 }
