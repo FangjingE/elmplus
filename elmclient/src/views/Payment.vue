@@ -136,6 +136,20 @@
 					});
 					
 					}
+					else{
+						this.$axios.post('VirtualWalletController/debit', this.$qs.stringify({
+						
+							userId: this.user.userId,
+							amount: this.orders.orderTotal,
+						
+						})).then(
+						alert('支付成功！'),
+						this.$router.go(-1)
+					).catch(error => {
+						console.error(error)
+					});
+						
+					}
 					this.$axios.post('VirtualWalletController/credit', this.$qs.stringify({
 						userId: this.orders.businessId,
 						amount: this.orders.orderTotal,

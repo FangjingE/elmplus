@@ -18,6 +18,7 @@ import Bonuspoints from'../views/Bonuspoints.vue'
 import Debit from '../views/Debit.vue'
 import Credit from '../views/Credit.vue'
 import Transctaion from '../views/Transcation.vue'
+import Bonuspointstranscation   from'../views/Bonuspointstranscation.vue'
 
 
 
@@ -104,6 +105,13 @@ const routes = [{
 			path: '/transcation',
 			name: 'Transctaion',
 			component: Transctaion
+		
+	},
+	{
+		
+			path: '/bonuspointstranscation',
+			name: 'Bonuspointstranscation',
+			component: Bonuspointstranscation
 		
 	}
 
