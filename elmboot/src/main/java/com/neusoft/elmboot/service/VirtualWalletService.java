@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 @Service
@@ -37,7 +38,8 @@ public class VirtualWalletService {
       wallet.debit(amount);
       VirtualWalletTransaction transactionEntity = new VirtualWalletTransaction();
       transactionEntity.setAmount(amount);
-      transactionEntity.setCreateTime(System.currentTimeMillis());
+      SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+      transactionEntity.setCreateTime(dateformat.format(System.currentTimeMillis()));
       transactionEntity.setType("DEBIT");
       transactionEntity.setFromWalletId(walletId);
       transactionRepo.saveTransaction(transactionEntity);
@@ -51,7 +53,8 @@ public class VirtualWalletService {
       wallet.credit(amount);
       VirtualWalletTransaction transactionEntity = new VirtualWalletTransaction();
       transactionEntity.setAmount(amount);
-      transactionEntity.setCreateTime(System.currentTimeMillis());
+      SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+      transactionEntity.setCreateTime(dateformat.format(System.currentTimeMillis()));
       transactionEntity.setType("CREDIT");
       transactionEntity.setFromWalletId(userId);
       transactionRepo.saveTransaction(transactionEntity);
@@ -62,7 +65,8 @@ public class VirtualWalletService {
    public void transfer(String fromWalletId, String toWalletId, BigDecimal amount) throws Exception {
       VirtualWalletTransaction transactionEntity = new VirtualWalletTransaction();
       transactionEntity.setAmount(amount);
-      transactionEntity.setCreateTime(System.currentTimeMillis());
+      SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+      transactionEntity.setCreateTime(dateformat.format(System.currentTimeMillis()));
       transactionEntity.setType("TRANSFER");
       transactionEntity.setFromWalletId(fromWalletId);
       transactionEntity.setToWalletId(toWalletId);

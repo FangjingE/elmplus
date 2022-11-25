@@ -4,21 +4,22 @@ import java.math.BigDecimal;
 
 public class BonuspointsTranscation {
     private long id ;
-    private String userId;
-    private  Integer orderId;
+    private String userid;
+    private  Integer orderid;
 
     private BigDecimal amount;
 
     private boolean type;
-    private long CreateTime;
-    private long expiredTime;
+    private String  createTime;
+    private String  expiredTime;
 
-    public long getCreateTime() {
-        return CreateTime;
+
+    public String getCreateTime() {
+        return createTime;
     }
 
-    public void setCreateTime(long createTime) {
-        CreateTime = createTime;
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime;
     }
 
     public BigDecimal getAmount() {
@@ -29,6 +30,14 @@ public class BonuspointsTranscation {
         this.amount = amount;
     }
 
+    public String getUserid() {
+        return userid;
+    }
+
+    public void setUserid(String userid) {
+        this.userid = userid;
+    }
+
     public boolean isType() {
         return type;
     }
@@ -37,29 +46,20 @@ public class BonuspointsTranscation {
         this.type = type;
     }
 
-    public String getUserId() {
-        return userId;
+
+    public Integer getOrderid() {
+        return orderid;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setOrderid(Integer orderid) {
+        this.orderid = orderid;
     }
 
-    public Integer getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(Integer orderId) {
-        this.orderId = orderId;
-    }
-
-
-
-    public long getExpiredTime() {
+    public String getExpiredTime() {
         return expiredTime;
     }
 
-    public void setExpiredTime(long expiredTime) {
+    public void setExpiredTime(String expiredTime) {
         this.expiredTime = expiredTime;
     }
 

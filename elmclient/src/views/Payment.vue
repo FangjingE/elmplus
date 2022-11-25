@@ -112,31 +112,29 @@
 						alert('余额不足！');
 						return;
 					}
+					if(this.orders.orderTotal>100){
 					this.$axios.post('VirtualWalletController/debit', this.$qs.stringify({
 
 						userId: this.user.userId,
 						amount: this.orders.orderTotal,
 
-					})).then(
-						alert('支付成功！'),
-						this.$router.go(-1)
-					).catch(error => {
+					})).catch(error => {
 						console.error(error)
 					});
 					
-					if(this.orders.orderTotal>100)
-					{
+					
 						this.$axios.post('BonuspointsController/credit', this.$qs.stringify({
 						
 							userId: this.user.userId,
 							amount: 10,
 						
 						})).then(
-						alert('获得10积分！'),
+						alert('支付成功，且获得10积分！'),
 						this.$router.go(-1)
 					).catch(error => {
 						console.error(error)
 					});
+					
 					}
 					this.$axios.post('VirtualWalletController/credit', this.$qs.stringify({
 						userId: this.orders.businessId,

@@ -1,9 +1,6 @@
 package com.neusoft.elmboot.controller;
 
-import com.neusoft.elmboot.po.Bonuspoints;
-import com.neusoft.elmboot.po.Business;
-import com.neusoft.elmboot.po.VirtualWallet;
-import com.neusoft.elmboot.po.VirtualWalletTransaction;
+import com.neusoft.elmboot.po.*;
 import com.neusoft.elmboot.service.BonuspointsService;
 import com.neusoft.elmboot.service.VirtualWalletService;
 import java.math.BigDecimal;
@@ -41,9 +38,9 @@ public class BonuspointsController {
 //    public void transfer(String fromUserId, String toUserId, BigDecimal amount) throws Exception {
 //        virtualWalletService.transfer(fromUserId,toUserId,amount);
 //    } // 转账
-//    @RequestMapping("/listtransactionbyid")
-//    public List<VirtualWalletTransaction> listtransactionbyid(String userid){
-//        return bonuspointsService.listtransactionbyid(userid);
-//    }//查询流水
+    @RequestMapping("/listtransactionbyid")
+    public List<BonuspointsTranscation> listtransactionbyid(String userid){
+        return bonuspointsService.listtransactionbyid(userid);
+    }//查询流水
 
 }

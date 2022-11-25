@@ -8,7 +8,9 @@
 	            </div>
 	        </div>
 	    </div>
-		
+		<div class="checktranscation-button">
+			<button @click="checktranscation">查看流水</button>
+		</div>
 	</div>
 </template>
 
@@ -33,6 +35,13 @@
 				        console.error(error);
 				    });
 		},
+		methods:{
+			checktranscation(){
+				this.$router.push({
+					path: '/Bonuspointstranscation',
+				});
+			}
+		}
 	}
 </script>
 

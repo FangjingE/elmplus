@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 
 public class VirtualWalletTransaction {
     private BigDecimal amount;
-    private long CreateTime;
+    private String CreateTime;
     private long id ;
 
     private String ToWalletId;
@@ -23,11 +23,11 @@ public class VirtualWalletTransaction {
         this.amount = amount;
     }
 
-    public long getCreateTime() {
+    public String  getCreateTime() {
         return CreateTime;
     }
 
-    public void setCreateTime(long createTime) {
+    public void setCreateTime(String createTime) {
         CreateTime = createTime;
     }
 
