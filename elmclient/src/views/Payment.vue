@@ -44,6 +44,7 @@
 </template>
 <script>
 	import Footer from '../components/Footer.vue';
+	var i = 0;
 	export default {
 		name: 'Payment',
 		data() {
@@ -90,7 +91,12 @@
 			window.onpopstate = null;
 		},
 		methods: {
+			
 			transfer(){
+			if(i==0)
+			{
+				console.log(this.user);
+			}
 				// console.log(this.user);
 			if(this.virtualwallet.balance<this.orders.orderTotal)
 			{

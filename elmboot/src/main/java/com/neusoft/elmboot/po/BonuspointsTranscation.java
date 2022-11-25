@@ -4,8 +4,8 @@ import java.math.BigDecimal;
 
 public class BonuspointsTranscation {
     private long id ;
-    String userId;
-    Integer orderId;
+    private String userId;
+    private  Integer orderId;
 
     private BigDecimal amount;
 

@@ -8,12 +8,19 @@
 	            </div>
 	        </div>
 	    </div>
+		
 	</div>
 </template>
 
 <script>
 	export default {
 	name: "Bonuspoints",
+	data() {
+			return {
+	// 			userId: this.$route.query.userId,
+	 			virtualWallet: {}
+			}
+	 	},
 	}
 </script>
 
