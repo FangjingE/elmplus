@@ -29,10 +29,10 @@ public class BonuspointsController {
 //    public BigDecimal getBalance(String userid) {
 //        return virtualWalletService.getBalance(userid);  } // 查询余额
 //
-//    @RequestMapping("/debit")
-//    public void debit(String userId, BigDecimal amount) throws Exception {
-//        virtualWalletService.debit(userId,amount);
-//    } // 提现、出账
+    @RequestMapping("/debit")
+    public void debit(String userId, BigDecimal amount) throws Exception {
+        bonuspointsService.debit(userId,amount);
+    } // 提现、出账
 //    @RequestMapping("/credit")
 //    public void credit(String userId, BigDecimal amount) throws Exception {
 //        virtualWalletService.credit(userId,amount);
