@@ -39,12 +39,7 @@
 				<img src="../assets/wechat.png">
 			</li>
 		</ul>
-		<div class="Bonus-button">
-			<button @click="useBonus">使用积分</button>
-		</div>
-
-	
-			
+		<button class="charge"@click="useBonus">使用积分</button>
 
 		<div class="payment-button">
 			<button @click="transfer">确认支付</button>
@@ -317,5 +312,16 @@
 		border-radius: 4px;
 		background-color: #38CA73;
 		color: #fff;
+	}
+	.charge {
+	  height: 6vw;
+	  display: flex;
+	  justify-content: center;
+	  align-items: center;
+	  border-radius: 10px;
+	  color: #ffffff;
+	  background-color: #359cff;
+	  position: absolute;
+	  border: none;
 	}
 </style>
