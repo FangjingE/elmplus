@@ -4,21 +4,14 @@
 		<header>
 			<p>提现</p>
 		</header>
+		<div class="card">
+		    <p>提现入口</p>
+		</div>
 		<!-- 表单部分 -->
 		<div class="box-below">
-		    <ul class="form-box">
-			    <li>
-		    		<div class="title">
-			    		提现金额：
-			    	</div>
-			    	<div class="content">
-			    		<input type="text" v-model="amount" placeholder="提现金额">
-			    	</div>
-		    	</li>
-		    </ul>
-		    <div class="button-debit">
-			    <button class="sure" @click="debit">确定</button>
-		    </div>
+			<p>提现金额：</p>
+			<input type="text" v-model="amount" placeholder="提现金额">
+			<button class="charge" @click="debit">确定</button>
 		</div>	
      </div>
 </template>
@@ -87,19 +80,25 @@
 	background-image: linear-gradient(to top, rgba(255, 0, 0, 0), rgb(59, 176, 246));
 }
 
-.sure {
-  width: 15vw;
-  height: 6vw;
+.wrapper Header {
   display: flex;
-  justify-content: center;
   align-items: center;
-  margin-left: 3vw;
-  margin-top: 27vw;
-  border-radius: 10px;
-  color: #ffffff;
-  background-color: #359cff;
-  position: absolute;
-  border: none;
+  height: 7vw;
+  font-weight: 550;
+  color: #FFFFFF;
+  padding-top: 3vw;
+}
+
+.card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;   
+    height: 9vw;   
+    font-size: 3.5vw;
+    color: #FFFFFF;
+    background-color: #359cff;
+    margin: 2vw 3vw 0 3vw;   
+    border-radius: 10px 10px 0 0;
 }
 
 .box-below {
@@ -115,10 +114,24 @@
   bottom: 5vw;
 }
 
-.title {
+.card-body {
 	margin-left: 3vw;
 	flex: 1;
 	border-right: solid 1px #DDD;
+}
+
+.charge {
+  height: 6vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 3vw;
+  margin-top: 27vw;
+  border-radius: 10px;
+  color: #ffffff;
+  background-color: #359cff;
+  position: absolute;
+  border: none;
 }
 
 </style>
