@@ -4,9 +4,7 @@
 			<p>我的钱包</p>
 		</Header>
         <div class="card">
-
-           <button class="fa-list-ul" @click="checktranscation">查看流水</button>
- 
+            <p>钱包</p>
         </div>
 		
 		<div class="box-below">
@@ -18,7 +16,7 @@
 
 		    <button class="draw" @click="tocredit">充值</button>
 
-		    
+		    <button class="fa-list-ul" @click="checktranscation">查看流水</button>
 		</div>
     </div>
 </template>
@@ -98,8 +96,17 @@ export default {
 }
 
 .fa-list-ul {
+  height: 6vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 47vw;
+  margin-top: 27vw;
+  border-radius: 10px;
+  color: #ffffff;
   background-color: #359cff;
-  border: #359cff;
+  position: absolute;
+  border: none;
 }
 
 .box-below {
