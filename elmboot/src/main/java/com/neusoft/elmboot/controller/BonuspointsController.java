@@ -22,10 +22,7 @@ public class BonuspointsController {
     public Bonuspoints getBonuspointsbyuserId(String userid){
         return bonuspointsService.getBonuspointsbyuserId(userid);
     }
-//    @RequestMapping("/getBalance")
-//    public BigDecimal getBalance(String userid) {
-//        return virtualWalletService.getBalance(userid);  } // 查询余额
-//
+
     @RequestMapping("/debit")
     public void debit(String userId, BigDecimal amount) throws Exception {
         bonuspointsService.debit(userId,amount);
@@ -33,11 +30,7 @@ public class BonuspointsController {
     @RequestMapping("/credit")
     public void credit(String userId, BigDecimal amount) throws Exception {
         bonuspointsService.credit(userId,amount);
-    } // 充值、入账
-//    @RequestMapping("/transfer")
-//    public void transfer(String fromUserId, String toUserId, BigDecimal amount) throws Exception {
-//        virtualWalletService.transfer(fromUserId,toUserId,amount);
-//    } // 转账
+    }
     @RequestMapping("/listtransactionbyid")
     public List<BonuspointsTranscation> listtransactionbyid(String userid){
         return bonuspointsService.listtransactionbyid(userid);
