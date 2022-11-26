@@ -5,15 +5,15 @@ import com.neusoft.elmboot.TransactionType;
 import java.math.BigDecimal;
 
 public class VirtualWalletTransaction {
-   private BigDecimal amount;
-   private long CreateTime;
-   private long id ;
+    private BigDecimal amount;
+    private String CreateTime;
+    private long id ;
 
-   private  long ToWalletId;
+    private String ToWalletId;
 
-   private TransactionType Type;
+    private String Type;
 
-   private long FromWalletId;
+    private String FromWalletId;
 
     public BigDecimal getAmount() {
         return amount;
@@ -23,11 +23,11 @@ public class VirtualWalletTransaction {
         this.amount = amount;
     }
 
-    public long getCreateTime() {
+    public String  getCreateTime() {
         return CreateTime;
     }
 
-    public void setCreateTime(long createTime) {
+    public void setCreateTime(String createTime) {
         CreateTime = createTime;
     }
 
@@ -39,27 +39,27 @@ public class VirtualWalletTransaction {
         this.id = id;
     }
 
-    public TransactionType getType() {
+    public String getType() {
         return Type;
     }
 
-    public void setType(TransactionType type) {
+    public void setType(String type) {
         Type = type;
     }
 
-    public long getFromWalletId() {
+    public String getFromWalletId() {
         return FromWalletId;
     }
 
-    public void setFromWalletId(long fromWalletId) {
+    public void setFromWalletId(String fromWalletId) {
         FromWalletId = fromWalletId;
     }
 
-    public long getToWalletId() {
+    public String getToWalletId() {
         return ToWalletId;
     }
 
-    public void setToWalletId(long toWalletId) {
+    public void setToWalletId(String toWalletId) {
         ToWalletId = toWalletId;
     }
 }

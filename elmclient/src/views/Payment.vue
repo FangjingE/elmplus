@@ -7,17 +7,22 @@
 		<!-- 订单信息部分 -->
 		<h3>订单信息：</h3>
 		<div class="order-info">
+			<p>大于100元的订单可获得10积分噢！</p>
 			<p>
 				{{orders.business.businessName}}
 				<i class="fa fa-caret-down" @click="detailetShow"></i>
 			</p>
 			<p>&#165;{{orders.orderTotal}}</p>
+			<p>使用100点积分后的价格（打七折）：&#165;{{orders.orderTotal*0.7}}</p>
 		</div>
 		<!-- 订单明细部分 -->
 		<ul class="order-detailet" v-show="isShowDetailet">
 			<li v-for="item in orders.list">
+				<!-- :key="item.orderId" -->
 				<p>{{item.food.foodName}} x {{item.quantity}}</p>
 				<p>&#165;{{item.food.foodPrice*item.quantity}}</p>
+				
+				
 			</li>
 			<li>
 				<p>配送费</p>
@@ -34,19 +39,29 @@
 				<img src="../assets/wechat.png">
 			</li>
 		</ul>
-		<div class="payment-button">
-			<button>确认支付</button>
+		<div class="Bonus-button">
+			<button @click="useBonus">使用积分</button>
 		</div>
+
+	
+			
+
+		<div class="payment-button">
+			<button @click="transfer">确认支付</button>
+		</div>
+
 		<!-- 底部菜单部分 -->
 		<Footer></Footer>
 	</div>
 </template>
 <script>
 	import Footer from '../components/Footer.vue';
+	var i = 0;
 	export default {
 		name: 'Payment',
 		data() {
 			return {
+				virtualwallet: {},
 				orderId: this.$route.query.orderId,
 				orders: {
 					business: {}
@@ -55,6 +70,16 @@
 			}
 		},
 		created() {
+			this.user = this.$getSessionStorage('user');
+
+			this.$axios.post('VirtualWalletController/getWalletbyuserId', this.$qs.stringify({
+				userid: this.user.userId
+			})).then(response => {
+				this.virtualwallet = response.data;
+			}).catch(error => {
+				console.error(error);
+			});
+
 			this.$axios.post('OrdersController/getOrdersById', this.$qs.stringify({
 				orderId: this.orderId
 			})).then(response => {
@@ -78,6 +103,106 @@
 			window.onpopstate = null;
 		},
 		methods: {
+
+
+			transfer() {
+
+				if (i == 0) {
+					if (this.virtualwallet.balance < this.orders.orderTotal) {
+						alert('余额不足！');
+						return;
+					}
+					if(this.orders.orderTotal>100){
+					this.$axios.post('VirtualWalletController/debit', this.$qs.stringify({
+
+						userId: this.user.userId,
+						amount: this.orders.orderTotal,
+
+					})).catch(error => {
+						console.error(error)
+					});
+					
+					
+						this.$axios.post('BonuspointsController/credit', this.$qs.stringify({
+						
+							userId: this.user.userId,
+							amount: 10,
+						
+						})).then(
+						alert('支付成功，且获得10积分！'),
+						this.$router.go(-1)
+					).catch(error => {
+						console.error(error)
+					});
+					
+					}
+					else{
+						this.$axios.post('VirtualWalletController/debit', this.$qs.stringify({
+						
+							userId: this.user.userId,
+							amount: this.orders.orderTotal,
+						
+						})).then(
+						alert('支付成功！'),
+						this.$router.go(-1)
+					).catch(error => {
+						console.error(error)
+					});
+						
+					}
+					this.$axios.post('VirtualWalletController/credit', this.$qs.stringify({
+						userId: this.orders.businessId,
+						amount: this.orders.orderTotal,
+					})).catch(error => {
+						console.error(error)
+					});
+				}
+				if(i== 1)
+				{
+				var amout = this.orders.orderTotal*0.7;
+				if (this.virtualwallet.balance < amout) {
+					alert('余额不足！');
+					return;
+				}
+				this.$axios.post('BonuspointsController/debit', this.$qs.stringify({
+				
+					userId: this.user.userId,
+					amount: 100,
+				
+				})).catch(error => {
+					console.error(error)
+				});
+				this.$axios.post('VirtualWalletController/debit', this.$qs.stringify({
+				
+					userId: this.user.userId,
+					amount: amout,
+				
+				})).then(
+					alert('使用积分支付成功！'),
+					this.$router.go(-1)
+				).catch(error => {
+					console.error(error)
+				});
+				this.$axios.post('VirtualWalletController/credit', this.$qs.stringify({
+					userId: this.orders.businessId,
+					amount: amout,
+				})).catch(error => {
+					console.error(error)
+				});
+				}
+				// console.log(this.user);
+
+
+
+           i= 0;
+			},
+
+			useBonus() {
+			
+				i = 1;
+             this.transfer();
+			},
+
 			detailetShow() {
 				this.isShowDetailet = !this.isShowDetailet;
 			}
