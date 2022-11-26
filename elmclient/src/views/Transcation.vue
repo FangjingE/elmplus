@@ -7,7 +7,7 @@
 		<li v-for="item in transcationArr" >
 			<div class="trancation-info">
 				<p>
-					{{item}}
+				流水编号：{{item.id}}    类型：{{item.type}}    数额：{{item.amount}}  从钱包：{{item.fromWalletId}}到钱包：{{item.toWalletId}}    创建时间：{{item.createTime}}
 				</p>
 			</div>
 		</li>

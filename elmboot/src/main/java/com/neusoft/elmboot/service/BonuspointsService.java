@@ -37,7 +37,7 @@ public class BonuspointsService {
         transactionEntity.setAmount(amount);
         SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         transactionEntity.setCreateTime(dateformat.format(System.currentTimeMillis()));
-        transactionEntity.setType(false);
+        transactionEntity.setType("使用");
         transactionEntity.setUserid(userId);
        // transactionEntity.setExpiredTime();
         bonuspointstranscationRepo.saveTransaction(transactionEntity);
@@ -52,7 +52,7 @@ public class BonuspointsService {
         SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         transactionEntity.setCreateTime(dateformat.format(System.currentTimeMillis()));
         transactionEntity.setExpiredTime(dateformat.format(System.currentTimeMillis()+2592000000L));//2592000000是一个月的时间戳，积分一个月后失效。
-        transactionEntity.setType(true);
+        transactionEntity.setType("获得");
         transactionEntity.setUserid(userId);
         bonuspointstranscationRepo.saveTransaction(transactionEntity);
         bonuspointsRepo.updateBalance(userId, bonuspoints.getBalance());

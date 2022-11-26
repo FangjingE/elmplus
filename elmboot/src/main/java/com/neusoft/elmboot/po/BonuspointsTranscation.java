@@ -9,7 +9,7 @@ public class BonuspointsTranscation {
 
     private BigDecimal amount;
 
-    private boolean type;
+    private String type;
     private String  createTime;
     private String  expiredTime;
 
@@ -38,11 +38,11 @@ public class BonuspointsTranscation {
         this.userid = userid;
     }
 
-    public boolean isType() {
+    public String getType() {
         return type;
     }
 
-    public void setType(boolean type) {
+    public void setType(String type) {
         this.type = type;
     }
 

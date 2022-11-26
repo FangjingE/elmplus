@@ -109,12 +109,13 @@
 						return;
 					}
 					if(this.orders.orderTotal>100){
-					this.$axios.post('VirtualWalletController/debit', this.$qs.stringify({
-
-						userId: this.user.userId,
-						amount: this.orders.orderTotal,
-
-					})).catch(error => {
+					this.$axios.post('VirtualWalletController/transfer', this.$qs.stringify({
+						
+							fromUserId: this.user.userId,
+							toUserId:this.orders.businessId,
+							amount: this.orders.orderTotal,
+						
+						})).catch(error => {
 						console.error(error)
 					});
 					
@@ -133,9 +134,10 @@
 					
 					}
 					else{
-						this.$axios.post('VirtualWalletController/debit', this.$qs.stringify({
+						this.$axios.post('VirtualWalletController/transfer', this.$qs.stringify({
 						
-							userId: this.user.userId,
+							fromUserId: this.user.userId,
+							toUserId:this.orders.businessId,
 							amount: this.orders.orderTotal,
 						
 						})).then(
@@ -144,14 +146,9 @@
 					).catch(error => {
 						console.error(error)
 					});
-						
+												
 					}
-					this.$axios.post('VirtualWalletController/credit', this.$qs.stringify({
-						userId: this.orders.businessId,
-						amount: this.orders.orderTotal,
-					})).catch(error => {
-						console.error(error)
-					});
+
 				}
 				if(i== 1)
 				{
@@ -168,21 +165,16 @@
 				})).catch(error => {
 					console.error(error)
 				});
-				this.$axios.post('VirtualWalletController/debit', this.$qs.stringify({
+				this.$axios.post('VirtualWalletController/transfer', this.$qs.stringify({
 				
-					userId: this.user.userId,
-					amount: amout,
+					fromUserId: this.user.userId,
+					toUserId:this.orders.businessId,
+					amount: this.orders.orderTotal,
 				
 				})).then(
 					alert('使用积分支付成功！'),
 					this.$router.go(-1)
 				).catch(error => {
-					console.error(error)
-				});
-				this.$axios.post('VirtualWalletController/credit', this.$qs.stringify({
-					userId: this.orders.businessId,
-					amount: amout,
-				})).catch(error => {
 					console.error(error)
 				});
 				}
