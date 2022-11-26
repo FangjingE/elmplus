@@ -41,5 +41,19 @@
 	}
 </script>
 
-<style>
+<style scoped>
+.wrapper {
+    width: 100%;
+	height: 100%;
+	background-image: linear-gradient(to top, rgba(255, 0, 0, 0), rgb(59, 176, 246));
+}
+
+.wrapper Header {
+  display: flex;
+  align-items: center;
+  height: 7vw;
+  font-weight: 550;
+  color: #FFFFFF;
+  padding-top: 3vw;
+}
 </style>
