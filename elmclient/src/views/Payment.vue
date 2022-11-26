@@ -6,8 +6,8 @@
 		</header>
 		<!-- 订单信息部分 -->
 		<h3>订单信息：</h3>
+		<h4>大于100元的订单可获得10积分噢！</h4>
 		<div class="order-info">
-			<p>大于100元的订单可获得10积分噢！</p>
 			<p>
 				{{orders.business.businessName}}
 				<i class="fa fa-caret-down" @click="detailetShow"></i>
@@ -39,9 +39,10 @@
 				<img src="../assets/wechat.png">
 			</li>
 		</ul>
-		<button class="charge"@click="useBonus">使用积分</button>
+		
 
 		<div class="payment-button">
+			<button @click="useBonus">使用积分</button>
 			<button @click="transfer">确认支付</button>
 		</div>
 
@@ -312,16 +313,5 @@
 		border-radius: 4px;
 		background-color: #38CA73;
 		color: #fff;
-	}
-	.charge {
-	  height: 6vw;
-	  display: flex;
-	  justify-content: center;
-	  align-items: center;
-	  border-radius: 10px;
-	  color: #ffffff;
-	  background-color: #359cff;
-	  position: absolute;
-	  border: none;
 	}
 </style>
