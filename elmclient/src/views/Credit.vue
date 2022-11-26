@@ -5,20 +5,13 @@
 			<p>充值</p>
 		</header>
 		<!-- 表单部分 -->
+		<div class="card">
+		    <p>充值入口</p>
+		</div>
 		<div class="box-below">
-		    <ul class="form-box">
-			    <li>
-			    	<div class="title">
-					   <p>充值金额：</p>
-				    </div>
-				    <div class="content">
-			    		<input type="text" v-model="amount" placeholder="充值金额">
-		    		</div>
-			    </li>
-		    </ul>
-		    <div class="button-debit">
-		        <button class="sure" @click="debit">确定</button>
-		    </div>
+			<p>充值金额：</p>
+			<input type="text" v-model="amount" placeholder="充值金额">
+		    <button class="charge" @click="debit">确定</button>
         </div>
 	 </div>
 </template>
@@ -87,6 +80,27 @@
 	background-image: linear-gradient(to top, rgba(255, 0, 0, 0), rgb(59, 176, 246));
 }
 
+.wrapper Header {
+  display: flex;
+  align-items: center;
+  height: 7vw;
+  font-weight: 550;
+  color: #FFFFFF;
+  padding-top: 3vw;
+}
+
+.card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;   
+    height: 9vw;   
+    font-size: 3.5vw;
+    color: #FFFFFF;
+    background-color: #359cff;
+    margin: 2vw 3vw 0 3vw;   
+    border-radius: 10px 10px 0 0;
+}
+
 .box-below {
   display: flex;
   flex-direction: column;
@@ -100,8 +114,13 @@
   bottom: 5vw;
 }
 
-.sure {
-  width: 15vw;
+.card-body {
+	margin-left: 3vw;
+	flex: 1;
+	border-right: solid 1px #DDD;
+}
+
+.charge {
   height: 6vw;
   display: flex;
   justify-content: center;
@@ -113,12 +132,6 @@
   background-color: #359cff;
   position: absolute;
   border: none;
-}
-
-.title {
-	margin-left: 3vw;
-	flex: 1;
-	border-right: solid 1px #DDD;
 }
 
 </style>
