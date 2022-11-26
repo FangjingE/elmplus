@@ -42,9 +42,14 @@
 		
 
 		<div class="payment-button">
-			<button @click="useBonus">使用积分</button>
-			<button @click="transfer">确认支付</button>
-		</div>
+					<button @click="transfer">确认支付</button>      
+				</div>
+		    <p3>
+		        
+		    </p3>
+		    <div class="another-button">
+		      <button @click="useBonus">使用积分</button>
+		    </div>
 
 		<!-- 底部菜单部分 -->
 		<Footer></Footer>
@@ -291,19 +296,36 @@
 	}
 
 	.wrapper .payment-button {
-		width: 100%;
-		box-sizing: border-box;
-		padding: 4vw;
+	  width: 100%;
+	  box-sizing: border-box;
+	  padding: 4vw;
 	}
-
+	
 	.wrapper .payment-button button {
-		width: 100%;
-		height: 10vw;
-		border: none;
-		/*去掉外轮廓线*/
-		outline: none;
-		border-radius: 4px;
-		background-color: #38CA73;
-		color: #fff;
+	  width: 100%;
+	  height: 10vw;
+	  border: none;
+	  /*去掉外轮廓线*/
+	  outline: none;
+	  border-radius: 10px;
+	  background-color: #38CA73;
+	  color: #fff;
+	}
+	
+	.wrapper .another-button {
+	  width: 100%;
+	  box-sizing: border-box;
+	  padding: 4vw;
+	}
+	
+	.wrapper .another-button button {
+	  width: 100%;
+	  height: 10vw;
+	  border: none;
+	  /*去掉外轮廓线*/
+	  outline: none;
+	  border-radius: 10px;
+	  background-color: #10d4d4;
+	  color: #fff;
 	}
 </style>
