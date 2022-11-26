@@ -40,5 +40,26 @@
 		
 </script>
 
-<style>
+<style scoped>
+.wrapper {
+    width: 100%;
+	height: 100%;
+	background-image: linear-gradient(to top, rgba(255, 0, 0, 0), rgb(59, 176, 246));
+}
+
+.card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+    height: 9vw;
+    
+    font-size: 3.5vw;
+    color: white;
+    background-color: #359cff;
+    margin: 2vw 3vw 0 3vw;
+    
+    border-radius: 10px 10px 0 0;
+}
+
 </style>
