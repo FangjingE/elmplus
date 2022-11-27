@@ -63,6 +63,7 @@
 		data() {
 			return {
 				virtualwallet: {},
+				bonuspoints:{},
 				orderId: this.$route.query.orderId,
 				orders: {
 					business: {}
@@ -77,6 +78,14 @@
 				userid: this.user.userId
 			})).then(response => {
 				this.virtualwallet = response.data;
+			}).catch(error => {
+				console.error(error);
+			});
+			
+			this.$axios.post('BonuspointsController/getBonuspointsbyuserId', this.$qs.stringify({
+				userid: this.user.userId
+			})).then(response => {
+				this.bonuspoints = response.data;
 			}).catch(error => {
 				console.error(error);
 			});
@@ -158,10 +167,17 @@
 				if(i== 1)
 				{
 				var amout = this.orders.orderTotal*0.7;
-				if (this.virtualwallet.balance < amout) {
-					alert('余额不足！');
+				if (this.bonuspoints.balance < 100) {
+					alert('积分不足！');
+					i= 0;
 					return;
 				}
+				if (this.virtualwallet.balance < amout) {
+					alert('余额不足！');
+					i= 0;
+					return;
+				}
+				
 				this.$axios.post('BonuspointsController/debit', this.$qs.stringify({
 				
 					userId: this.user.userId,
@@ -174,7 +190,7 @@
 				
 					fromUserId: this.user.userId,
 					toUserId:this.orders.businessId,
-					amount: this.orders.orderTotal,
+					amount: this.orders.orderTotal*0.7,
 				
 				})).then(
 					alert('使用积分支付成功！'),
