@@ -10,12 +10,19 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
+/*
+@RestController是@Controller 的衍生注解。相当于@Controller+@ResponseBody
+@Controller: This is a Spring Framework annotation typically used to mark a class as a controller component.
+Controllers handle incoming HTTP requests and provide responses. 
+By including this annotation, classes annotated with @RestController are treated as Spring controllers.
+@ResponseBody: This Spring annotation is often used in combination with @Controller. It indicates that the return value of methods in the annotated class should be serialized directly to the HTTP response body. This is commonly used for building RESTful web services where the response is typically in JSON or XML format.
+*/
 @RestController
+//用于将任意HTTP请求映射到控制器方法上
 @RequestMapping("/VirtualWalletController")
 public class VirtualWalletController {
 
-    // 通过构造函数或者 IOC 框架注入
+    // @Autowired可以标注在属性上、方法上和构造器上，来完成自动装配。通过构造函数或者 IOC 框架注入,默认byType，如找到多个，再用byName
     @Autowired
     private VirtualWalletService virtualWalletService;
 
